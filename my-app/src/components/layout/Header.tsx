@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bell, LogOut, User } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { useAuthStore } from '../../stores/authStore.ts';
 import { cn } from '../../utils/cn.ts';
 
@@ -11,9 +12,10 @@ export function Header() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
-    navigate('/login');
     setOpen(false);
+    await logout();
+    toast.success('Logged out successfully');
+    navigate('/login', { replace: true });
   };
 
   return (

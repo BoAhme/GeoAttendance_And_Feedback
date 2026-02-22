@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore.ts';
+import { getAccessToken } from '../utils/storage.ts';
 import type { UserRole } from '../types/index.ts';
 
 import { LoginPage } from '../pages/auth/LoginPage.tsx';
@@ -26,8 +27,13 @@ import { AdminUserSignupPage } from '../pages/admin/AdminUserSignupPage.tsx';
 function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode; allowedRoles: UserRole[] }) {
   const user = useAuthStore((s) => s.user);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const clearSession = useAuthStore((s) => s.clearSession);
 
   if (!isAuthenticated || !user) {
+    return <Navigate to="/login" replace />;
+  }
+  if (!getAccessToken()) {
+    clearSession();
     return <Navigate to="/login" replace />;
   }
   if (!allowedRoles.includes(user.role)) {

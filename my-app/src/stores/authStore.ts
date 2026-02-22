@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { User, UserRole } from '../types/index.ts';
 import { authApi } from '../services/mockApi.ts';
+import { clearAuth, setAccessToken } from '../utils/storage.ts';
 
 interface AuthState {
   user: User | null;
@@ -10,13 +11,15 @@ interface AuthState {
   error: string | null;
   login: (email: string, password: string, role: UserRole) => Promise<void>;
   logout: () => Promise<void>;
+  /** Clears tokens and auth state (used by logout and when token is missing). */
+  clearSession: () => void;
   resetPassword: (email: string) => Promise<void>;
   clearError: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isAuthenticated: false,
       isLoading: false,
@@ -25,6 +28,8 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true, error: null });
         try {
           const user = await authApi.login(email, password, role);
+          const token = `geo-${btoa(JSON.stringify({ sub: user.id, role }))}.${Date.now()}`;
+          setAccessToken(token);
           set({ user, isAuthenticated: true, isLoading: false, error: null });
         } catch (e) {
           set({ error: e instanceof Error ? e.message : 'Login failed', isLoading: false });
@@ -33,6 +38,10 @@ export const useAuthStore = create<AuthState>()(
       },
       logout: async () => {
         await authApi.logout();
+        get().clearSession();
+      },
+      clearSession: () => {
+        clearAuth();
         set({ user: null, isAuthenticated: false, error: null });
       },
       resetPassword: async (email) => {
