@@ -1,0 +1,28 @@
+import type { User } from '../types/index.ts';
+
+export const mockUsers: User[] = [
+  { id: 'u1', name: 'Alice Johnson', email: 'alice@uni.edu', role: 'student' },
+  { id: 'u2', name: 'Bob Smith', email: 'bob@uni.edu', role: 'student' },
+  { id: 'u3', name: 'Carol White', email: 'carol@uni.edu', role: 'student' },
+  { id: 'u4', name: 'David Brown', email: 'david@uni.edu', role: 'student' },
+  { id: 'u5', name: 'Eve Davis', email: 'eve@uni.edu', role: 'student' },
+  { id: 'u6', name: 'Frank Miller', email: 'frank@uni.edu', role: 'student' },
+  { id: 'u7', name: 'Grace Lee', email: 'grace@uni.edu', role: 'student' },
+  { id: 'u8', name: 'Henry Wilson', email: 'henry@uni.edu', role: 'student' },
+  { id: 'u9', name: 'Ivy Taylor', email: 'ivy@uni.edu', role: 'student' },
+  { id: 'u10', name: 'Jack Anderson', email: 'jack@uni.edu', role: 'student' },
+  { id: 'u11', name: 'Kate Thomas', email: 'kate@uni.edu', role: 'student' },
+  { id: 'u12', name: 'Leo Jackson', email: 'leo@uni.edu', role: 'student' },
+  { id: 'u13', name: 'Mia Martin', email: 'mia@uni.edu', role: 'student' },
+  { id: 'u14', name: 'Noah Clark', email: 'noah@uni.edu', role: 'student' },
+  { id: 'u15', name: 'Olivia Lewis', email: 'olivia@uni.edu', role: 'student' },
+  { id: 'u16', name: 'Paul Walker', email: 'paul@uni.edu', role: 'student' },
+  { id: 'u17', name: 'Quinn Hall', email: 'quinn@uni.edu', role: 'student' },
+  { id: 'u18', name: 'Rachel Young', email: 'rachel@uni.edu', role: 'student' },
+  { id: 'u19', name: 'Sam King', email: 'sam@uni.edu', role: 'student' },
+  { id: 'u20', name: 'Tina Wright', email: 'tina@uni.edu', role: 'student' },
+  { id: 'f1', name: 'Dr. James Foster', email: 'j.foster@uni.edu', role: 'faculty' },
+  { id: 'f2', name: 'Dr. Sarah Green', email: 's.green@uni.edu', role: 'faculty' },
+  { id: 'a1', name: 'Admin User', email: 'admin@uni.edu', role: 'admin' },
+  { id: 'a2', name: 'Ahmed Ayman Mido', email: 'ahmedaymanmido307@gmail.com', role: 'admin' },
+];
