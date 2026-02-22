@@ -33,7 +33,7 @@ export function LiveSessionPage() {
   }, [selectedId]);
 
   const activeSession = sessions.find((s) => s.id === selectedId) ?? sessions[0];
-  const totalStudents = 24;
+  const totalStudents = 250;
   const presentCount = checkIns.length;
 
   const handleOverride = async (userId: string, status: 'present' | 'absent') => {

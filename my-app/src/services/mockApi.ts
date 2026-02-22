@@ -16,12 +16,13 @@ const mockPasswords: Record<string, string> = {
 export const authApi = {
   async login(email: string, password: string, role: UserRole): Promise<User> {
     await delay(600);
-    const user = mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase() && u.role === role);
-    if (!user) throw new Error('Invalid email, password, or role.');
-    const expectedPassword = mockPasswords[user.email.toLowerCase()];
-    if (expectedPassword != null && password !== expectedPassword) {
-      throw new Error('Invalid email, password, or role.');
-    }
+    const user: User = {
+      id: "temp-id",
+      name: email.split("@")[0],
+      email,
+      role
+    };
+    
     return user;
   },
   logout: async (): Promise<void> => delay(200),

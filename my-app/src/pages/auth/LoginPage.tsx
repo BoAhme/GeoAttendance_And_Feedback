@@ -56,7 +56,7 @@ export function LoginPage() {
           <p className="text-sm text-gray-500">Geo-Attendance & Feedback</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="Email"
             type="email"
@@ -66,7 +66,10 @@ export function LoginPage() {
             fullWidth
             {...register('email', {
               required: 'Email is required',
-              pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email format"
+              },
             })}
           />
           <FormInput

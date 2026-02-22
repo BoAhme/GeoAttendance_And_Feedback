@@ -17,8 +17,8 @@ export const mockSessions: Session[] = [
     endTime: activeEnd.toISOString(),
     checkInWindowMinutes: 15,
     status: 'active',
-    lat: 40.7128,
-    lng: -74.006,
+    lat: 30.0275,
+    lng: 31.2101,
     geofenceRadiusMeters: 50,
   },
   {
@@ -32,14 +32,14 @@ export const mockSessions: Session[] = [
     endTime: addMinutes(now, 120).toISOString(),
     checkInWindowMinutes: 10,
     status: 'scheduled',
-    lat: 40.715,
-    lng: -74.003,
+    lat: 30.0277,
+    lng: 31.2102,
     geofenceRadiusMeters: 50,
   },
 ];
 
 export const mockCheckIns: CheckIn[] = [
-  { id: 'ci1', sessionId: 's1', userId: 'u1', userName: 'Alice Johnson', checkedInAt: subMinutes(now, 10).toISOString(), lat: 40.7129, lng: -74.0059, locationVerified: true },
-  { id: 'ci2', sessionId: 's1', userId: 'u2', userName: 'Bob Smith', checkedInAt: subMinutes(now, 8).toISOString(), lat: 40.7127, lng: -74.0061, locationVerified: true },
-  { id: 'ci3', sessionId: 's1', userId: 'u3', userName: 'Carol White', checkedInAt: subMinutes(now, 5).toISOString(), lat: 40.7128, lng: -74.006, locationVerified: true },
+  { id: 'ci1', sessionId: 's1', userId: 'u1', userName: 'zeyad ahmed', checkedInAt: subMinutes(now, 10).toISOString(), lat: 30.0276, lng: 31.2101, locationVerified: true },
+  { id: 'ci2', sessionId: 's1', userId: 'u2', userName: 'zeyad mohamed', checkedInAt: subMinutes(now, 8).toISOString(), lat: 30.0277, lng: 31.2102, locationVerified: true },
+  { id: 'ci3', sessionId: 's1', userId: 'u3', userName: 'ahmed ayman', checkedInAt: subMinutes(now, 5).toISOString(), lat: 30.0278, lng: 31.2103, locationVerified: true },
 ];
