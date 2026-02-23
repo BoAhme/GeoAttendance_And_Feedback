@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { User, UserRole } from '../types/index.ts';
-import { authApi } from '../services/mockApi.ts';
+import { authApi } from '../services/api.ts';
 import { clearAuth, setAccessToken } from '../utils/storage.ts';
 
 interface AuthState {

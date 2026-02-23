@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AppShell } from '../../components/layout/AppShell.tsx';
 import { DataTable, type Column } from '../../components/ui/DataTable.tsx';
 import { TableSkeleton } from '../../components/ui/LoadingSkeleton.tsx';
-import { adminApi } from '../../services/mockApi.ts';
+import { adminApi } from '../../services/api.ts';
 import type { Course } from '../../types/index.ts';
 
 export function AdminCoursesPage() {
@@ -10,7 +10,10 @@ export function AdminCoursesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    adminApi.getCourses().then(setCourses).finally(() => setLoading(false));
+    adminApi.getCourses()
+      .then(setCourses)
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const columns: Column<Course>[] = [

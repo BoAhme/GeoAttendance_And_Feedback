@@ -3,7 +3,7 @@ import { Users, BookOpen, MapPin } from 'lucide-react';
 import { AppShell } from '../../components/layout/AppShell.tsx';
 import { StatCard } from '../../components/ui/StatCard.tsx';
 import { LoadingSkeleton, CardSkeleton } from '../../components/ui/LoadingSkeleton.tsx';
-import { adminApi } from '../../services/mockApi.ts';
+import { adminApi } from '../../services/api.ts';
 import { format } from 'date-fns';
 
 export function AdminOverviewPage() {

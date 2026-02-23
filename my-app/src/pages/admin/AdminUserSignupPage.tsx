@@ -5,7 +5,7 @@ import { UserPlus, ArrowLeft } from 'lucide-react';
 import { AppShell } from '../../components/layout/AppShell.tsx';
 import { FormInput } from '../../components/forms/FormInput.tsx';
 import { FormSelect } from '../../components/forms/FormSelect.tsx';
-import { adminApi } from '../../services/mockApi.ts';
+import { adminApi } from '../../services/api.ts';
 import type { UserRole } from '../../types/index.ts';
 import toast from 'react-hot-toast';
 

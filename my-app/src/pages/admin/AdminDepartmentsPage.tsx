@@ -5,7 +5,7 @@ import { DataTable, type Column } from '../../components/ui/DataTable.tsx';
 import { Modal } from '../../components/Modal/index.ts';
 import { FormInput } from '../../components/forms/FormInput.tsx';
 import { TableSkeleton } from '../../components/ui/LoadingSkeleton.tsx';
-import { adminApi } from '../../services/mockApi.ts';
+import { adminApi } from '../../services/api.ts';
 import type { Department } from '../../types/index.ts';
 import toast from 'react-hot-toast';
 
@@ -19,7 +19,13 @@ export function AdminDepartmentsPage() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    adminApi.getDepartments().then(setDepartments).finally(() => setLoading(false));
+    adminApi.getDepartments()
+      .then(setDepartments)
+      .catch(err => {
+        console.error(err);
+        toast.error('Failed to load departments');
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const openEdit = (d: Department) => {

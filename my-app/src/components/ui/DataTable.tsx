@@ -38,8 +38,8 @@ export function DataTable<T>({
     const col = columns.find((c) => c.id === sortKey);
     if (!col || !('sortable' in col) || !col.sortable) return data;
     return [...data].sort((a, b) => {
-      const aVal = String((col.accessor as (r: T) => unknown)(a));
-      const bVal = String((col.accessor as (r: T) => unknown)(b));
+      const aVal = String((col.accessor as (r: T) => unknown)(a) ?? '');
+      const bVal = String((col.accessor as (r: T) => unknown)(b) ?? '');
       return sortDir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
     });
   }, [data, sortKey, sortDir, columns]);

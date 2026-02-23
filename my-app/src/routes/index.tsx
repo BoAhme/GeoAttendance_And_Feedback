@@ -43,10 +43,22 @@ function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode;
   return <>{children}</>;
 }
 
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const user = useAuthStore((s) => s.user);
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+
+  if (isAuthenticated && user) {
+    const base = user.role === 'student' ? '/student' : user.role === 'faculty' ? '/faculty' : '/admin';
+    return <Navigate to={base} replace />;
+  }
+
+  return <>{children}</>;
+}
+
 export const router = createBrowserRouter([
   { path: '/', element: <Navigate to="/login" replace /> },
-  { path: '/login', element: <LoginPage /> },
-  { path: '/forgot-password', element: <ForgotPasswordPage /> },
+  { path: '/login', element: <PublicRoute><LoginPage /></PublicRoute> },
+  { path: '/forgot-password', element: <PublicRoute><ForgotPasswordPage /></PublicRoute> },
 
   {
     path: '/student',

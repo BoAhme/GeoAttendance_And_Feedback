@@ -6,7 +6,7 @@ import { Modal } from '../../components/Modal/index.ts';
 import { FormInput } from '../../components/forms/FormInput.tsx';
 import { FormMapPicker } from '../../components/forms/FormMapPicker.tsx';
 import { TableSkeleton } from '../../components/ui/LoadingSkeleton.tsx';
-import { adminApi } from '../../services/mockApi.ts';
+import { adminApi } from '../../services/api.ts';
 import type { Classroom } from '../../types/index.ts';
 import toast from 'react-hot-toast';
 
@@ -23,7 +23,10 @@ export function AdminClassroomsPage() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    adminApi.getClassrooms().then(setClassrooms).finally(() => setLoading(false));
+    adminApi.getClassrooms()
+      .then(setClassrooms)
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const openEdit = (c: Classroom) => {
