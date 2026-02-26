@@ -34,40 +34,24 @@ const roleOptions: { value: UserRole; label: string }[] = [
 const ROLE_CONFIG: Record<UserRole, { label: string; color: string; bg: string; border: string }> = {
   student: {
     label: 'Student',
-    color: 'text-blue-700',
-    bg: 'bg-blue-50',
+    color: 'text-white',
+    bg: 'bg-blue-500',
     border: 'border-blue-200',
   },
   faculty: {
     label: 'Faculty',
-    color: 'text-emerald-700',
-    bg: 'bg-emerald-50',
+    color: 'text-white',
+    bg: 'bg-emerald-500',
     border: 'border-emerald-200',
   },
   admin: {
     label: 'Admin',
-    color: 'text-violet-700',
-    bg: 'bg-violet-50',
+    color: 'text-white',
+    bg: 'bg-violet-500',
     border: 'border-violet-200',
   },
 };
 
-const AVATAR_COLORS = [
-  'bg-blue-500',
-  'bg-emerald-500',
-  'bg-violet-500',
-  'bg-rose-500',
-  'bg-amber-500',
-  'bg-cyan-500',
-  'bg-pink-500',
-  'bg-indigo-500',
-];
-
-function getAvatarColor(id: string = '') {
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) hash = id.charCodeAt(i) + ((hash << 5) - hash);
-  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
-}
 
 function getInitials(name: string = '') {
   return (name || '')
@@ -353,7 +337,6 @@ export function AdminUsersPage() {
                 ) : (
                   pageData.map((user, idx) => {
                     const rc = ROLE_CONFIG[user.role as UserRole] || ROLE_CONFIG.student;
-                    const avatarBg = getAvatarColor(user.id);
                     const initials = getInitials(user.name);
                     return (
                       <tr
@@ -368,7 +351,7 @@ export function AdminUsersPage() {
                         {/* User (avatar + name sorted) */}
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-3">
-                            <div className={`h-9 w-9 rounded-full ${avatarBg} flex items-center justify-center flex-shrink-0`}>
+                            <div className={`h-9 w-9 rounded-full inline-flex items-center text-xs font-semibold  ${rc.color} ${rc.bg} ${rc.border} flex items-center justify-center flex-shrink-0`}>
                               <span className="text-white text-xs font-bold">{initials}</span>
                             </div>
                             <button
@@ -508,10 +491,10 @@ export function AdminUsersPage() {
           </>
         }
       >
-        <div className="space-y-4">
+        <div className="space-y-4 card py-4">
           {editUser && (
             <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 mb-2">
-              <div className={`h-10 w-10 rounded-full ${getAvatarColor(editUser.id)} flex items-center justify-center`}>
+              <div className={`h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center`}>
                 <span className="text-white text-sm font-bold">{getInitials(editUser.name)}</span>
               </div>
               <div>

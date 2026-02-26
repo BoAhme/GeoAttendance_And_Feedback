@@ -32,6 +32,9 @@ export function StudentProfilePage() {
               Student
             </span>
           </div>
+
+
+          
         </div>
         <div>
           <h3 className="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
