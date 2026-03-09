@@ -81,3 +81,28 @@ All data is in-memory. See `src/services/mockApi.ts` for:
 - **Admin:** getUsers, createUser, updateUser, getDepartments, updateDepartment, getCourses, getClassrooms, updateClassroom, generateReport  
 
 Replace with real API by swapping these modules or adding a thin HTTP layer.
+
+## Development with Jules
+
+This project is optimized for development with **Jules**, Google's autonomous AI coding agent.
+
+### CLI Setup
+
+1.  **Install the CLI:**
+    ```bash
+    npm install -g @google/jules
+    ```
+2.  **Authenticate:**
+    ```bash
+    jules login
+    ```
+3.  **Start a Task:**
+    ```bash
+    jules remote new --session "describe your task here"
+    ```
+4.  **Interactive Mode:**
+    Run `jules` without arguments to open the interactive dashboard (TUI).
+
+### VS Code Integration
+
+For the best experience, we recommend using the **Jules Extension** for VS Code. You can find it in the Marketplace as `HirokiMukai.jules-extension`. It allows you to manage sessions and view progress directly within your editor.
